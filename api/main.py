@@ -43,7 +43,7 @@ async def lifespan(_: FastAPI):
     yield
 
 app = FastAPI(
-    title="Documentos Universitarios RAG API",
+    title="VirtualMed RAG API",
     description="Servicio RAG soportado por LlamaIndex y ChromaDB.",
     version="1.0.0",
     lifespan=lifespan,
