@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.schemas import ChatRequest, ChatResponse, IngestResponse
 from config import CHROMA_COLLECTION, configure_settings
 from generation.query_engine import get_chat_engine
+from generation.response_formatter import clean_answer_text
 from ingestion.pipeline import (
     load_and_prepare_nodes,
 )
@@ -141,6 +142,7 @@ def chat(request: ChatRequest) -> ChatResponse:
         )
         response = chat_engine.chat(request.message)
         sources = extract_source_metadata(getattr(response, "source_nodes", None))
+        answer = clean_answer_text(str(response.response))
         total_seconds = time.perf_counter() - started
         logger.info(
             "event=chat_complete session_id=%s top_k=%s sources=%s latency_seconds=%.3f",
@@ -149,6 +151,6 @@ def chat(request: ChatRequest) -> ChatResponse:
             len(sources),
             total_seconds,
         )
-        return ChatResponse(answer=str(response.response), sources=sources)
+        return ChatResponse(answer=answer, sources=sources)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Chat failed: {exc}") from exc

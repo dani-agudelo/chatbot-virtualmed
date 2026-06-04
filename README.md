@@ -155,7 +155,8 @@ Definido en `generation/prompt.py`:
 - Rol: asistente clinico-documental de VirtualMed.
 - Responde solo con informacion **recuperada** de los documentos indexados.
 - Usa lenguaje claro y prioriza informacion del paciente/consulta actual.
-- Cita fuentes de forma explicita, por ejemplo: *Segun el archivo X, pagina Y...*
+- Responde con lenguaje claro y directo, sin citar archivos ni paginas en el texto.
+- Las fuentes se devuelven por separado en el campo `sources` de la API.
 - Si faltan datos, lo indica y solicita el dato faltante.
 - No emite diagnosticos definitivos ni reemplaza la evaluacion profesional.
 - Si detecta una posible senal de alarma en el texto recuperado, sugiere consulta presencial/urgente con cautela.
