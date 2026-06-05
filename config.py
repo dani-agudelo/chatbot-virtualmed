@@ -26,6 +26,10 @@ DEFAULT_EMBED_MODEL = "baai/bge-m3"
 
 DEFAULT_EMBED_BATCH_SIZE = 32
 
+MAX_UPLOAD_BYTES = 20 * 1024 * 1024
+MAX_CHUNKS_PER_INGEST = 500
+MAX_PDF_PAGES = 100
+
 
 def ensure_runtime_directories() -> None:
     """Crea directorios requeridos por la aplicacion."""

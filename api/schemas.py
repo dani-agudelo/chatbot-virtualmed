@@ -14,6 +14,31 @@ class IngestResponse(BaseModel):
     collection_name: str
 
 
+class IngestUploadResponse(BaseModel):
+    """Respuesta al indexar un PDF individual."""
+
+    file_name: str
+    indexed_documents: int
+    indexed_nodes: int
+    collection_name: str
+
+
+class RagDocumentItem(BaseModel):
+    """Documento indexado en el corpus RAG."""
+
+    file_name: str
+    indexed_nodes: int
+    file_size_bytes: int
+
+
+class DeleteDocumentResponse(BaseModel):
+    """Respuesta al eliminar un documento del corpus."""
+
+    file_name: str
+    deleted: bool
+    message: str
+
+
 class ChatRequest(BaseModel):
     """Esquema de cuerpo de solicitud para el endpoint de chat."""
 
